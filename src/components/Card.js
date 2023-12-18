@@ -2,25 +2,24 @@ import React, { useState } from 'react'
 
 function Card({items}) {
 
-    const[obj,setObj] = useState(items);
+    const[selectedId,setSelectedId] = useState(null);
 
-    const seeTheAnswer = (e) => {
-        const target = e.target;
-        const allListItems = document.querySelectorAll(".list .item");
-
-        allListItems.forEach(function(i){
-            i.className = 'item';
-        });
-        target.classList.add('clicked');
-
-        console.log(obj);
+    const handleClick = (id) => {
+        setSelectedId(selectedId === id ? null : id)
+        
+        //ALTERNATIVE WAYS
+        //1.if(selectedId === id){setSelectedId(null)}
+        //2. setSelectedId(selectedId !== id ? id : null)
     }
-    
+
   return (
       <>
-      {obj.map((i)=> 
-        <li key={i.id} id={i.id} className='item' onClick={seeTheAnswer}>
-            <span id={i.id}>{i.question}</span>
+      {items.map((i)=> 
+        <li 
+        key={i.id} 
+        className={i.id === selectedId ? 'item selected': 'item'} 
+        onClick={() => handleClick(i.id)}>
+            <span>{i.id===selectedId ? i.answer : i.question}</span>
         </li>
         )}
     </>

@@ -9,11 +9,21 @@
         border: 2px solid #000;
         border-radius: 10px;
         padding: 20px 40px;
-        min-height: 100px;
+        min-height: 150px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        transition: 0.1s ease-in-out;
+        &.selected{
+            background-color:red;
+            border: 2px solid red;
+            & span{
+                font-weight: 500;
+                font-size: 20px;
+                color: #fff;
+            }
+        }
         & span{
             display: block;
             font-weight: 400;
